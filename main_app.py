@@ -17,7 +17,6 @@ import numpy as np
 from streamlit_chat import message
 import time 
 import validators
-import genai
 import concurrent.futures
 import re
 import socket
