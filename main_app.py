@@ -39,6 +39,7 @@ import hashlib
 import pandas as pd
 import os
 import json
+import asyncio
 from cryptography.fernet import Fernet
 st.set_page_config(page_title="ML/AI Cyber App", page_icon="🛡️", layout="wide")
 rf_model = joblib.load('phishing_model.pkl')
@@ -69,12 +70,11 @@ genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 def load_model():
     """Load the Gemini AI model only once to avoid repeated loading."""
     return genai.GenerativeModel('gemini-1.5-flash')
-
-def get_gemini_response(input, prompt):
-    """Fetch response from Gemini AI model."""
-    model = load_model()
-    response = model.generate_content([input_text, prompt])
-    return response.generations[0].text
+asyncio def get_gemini_response(input, prompt):
+            """Fetch response from Gemini AI model."""
+            model = load_model()
+            response = model.generate_content([input_text, prompt])
+            return response.generations[0].text
 
 
 
