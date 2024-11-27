@@ -226,8 +226,8 @@ You are an expert in cybersecurity with all knowledge about cyber attacks and th
 Answer all user questions related to cyber threats, attacks, prevention, and symptoms only.
 """
 
- if submit and input_text:
-              with st.spinner("Thinking..."):
+  if submit and input_text:
+             with st.spinner("Thinking..."):
                           response = get_gemini_response(input_text, input_prompt)
                           st.markdown(
         "<h2 style='text-align: center; font-size: 40px; color: #3498db; font-weight: bold'>Here, You Go!!</h2>",
