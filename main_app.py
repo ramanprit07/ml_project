@@ -63,16 +63,27 @@ with open('2655649.jpg','rb') as f:
             st.markdown(css, unsafe_allow_html=True)
 
 
-
-
-
-
-
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-def get_gemini_repsonse(input,prompt):
-    model=genai.GenerativeModel('gemini-1.5-flash')
-    response=model.generate_content([input,prompt])
-    return response.text
+
+@st.cache_resource
+def load_model():
+    """Load the Gemini AI model only once to avoid repeated loading."""
+    return genai.GenerativeModel('gemini-1.5-flash')
+
+def get_gemini_response(input, prompt):
+    """Fetch response from Gemini AI model."""
+    model = load_model()
+    response = model.generate_content([input, prompt])
+    return response.generations[0].text
+
+
+
+
+# genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+# def get_gemini_repsonse(input,prompt):
+#     model=genai.GenerativeModel('gemini-1.5-flash')
+#     response=model.generate_content([input,prompt])
+#     return response.text
 
 
 # Sidebar menu
@@ -206,28 +217,23 @@ if selected == "Home":
     """
 
   st.markdown(html_content, unsafe_allow_html=True)
-  @st.cache_data
-
-  def get_cached_response(input_prompt, user_input):
-              return get_gemini_repsonse(input_prompt, user_input)
-
-  input = st.text_input("Ask here!! ", key="input")
+ 
+  input_text = st.text_input("Ask here!!", key="input")
   submit = st.button("Click to get your answer!!")
 
   input_prompt = """
-You are an expert in cyber security with all knowledge about cyber attacks and their prevention.
+You are an expert in cybersecurity with all knowledge about cyber attacks and their prevention.
 Answer all user questions related to cyber threats, attacks, prevention, and symptoms only.
 """
 
-  if submit and input:
+ if submit and input_text:
               with st.spinner("Thinking..."):
-                          response = get_cached_response(input_prompt, input)
+                          response = get_gemini_response(input_text, input_prompt)
                           st.markdown(
         "<h2 style='text-align: center; font-size: 40px; color: #3498db; font-weight: bold'>Here, You Go!!</h2>",
         unsafe_allow_html=True
     )
-                          st.write(response)
-      
+                          st.write(response)  
   # input=st.text_input("Ask here!! ",key="input")
   # submit=st.button("Click to get your answer!!")
 
