@@ -70,7 +70,7 @@ genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 def load_model():
     """Load the Gemini AI model only once to avoid repeated loading."""
     return genai.GenerativeModel('gemini-1.5-flash')
-asyncio def get_gemini_response(input, prompt):
+async def get_gemini_response(input, prompt):
             """Fetch response from Gemini AI model."""
             model = load_model()
             response = model.generate_content([input_text, prompt])
