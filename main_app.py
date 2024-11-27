@@ -17,6 +17,8 @@ import numpy as np
 from streamlit_chat import message
 import time 
 import validators
+import genai
+import concurrent.futures
 import re
 import socket
 import urllib.parse as urlparse
@@ -39,7 +41,7 @@ import hashlib
 import pandas as pd
 import os
 import json
-import asyncio
+
 from cryptography.fernet import Fernet
 st.set_page_config(page_title="ML/AI Cyber App", page_icon="🛡️", layout="wide")
 rf_model = joblib.load('phishing_model.pkl')
@@ -70,11 +72,19 @@ genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 def load_model():
     """Load the Gemini AI model only once to avoid repeated loading."""
     return genai.GenerativeModel('gemini-1.5-flash')
-async def get_gemini_response(input, prompt):
+def get_gemini_response(input, prompt):
             """Fetch response from Gemini AI model."""
             model = load_model()
             response = model.generate_content([input_text, prompt])
             return response.generations[0].text
+def get_response_with_threading(user_input, prompt):
+    """Run model call in a separate thread to avoid blocking Streamlit."""
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        future = executor.submit(get_gemini_response, user_input, prompt)
+        try:
+            return future.result(timeout=15)  # Timeout in seconds
+        except concurrent.futures.TimeoutError:
+            return "Sorry, the request timed out. Please try again."
 
 
 
@@ -229,15 +239,14 @@ Answer all user questions related to cyber threats, attacks, prevention, and sym
 
   if submit and input_text:
               with st.spinner("Thinking..."):
-                          try:
-                                      response = get_gemini_response(input_text, input_prompt)
-                                      st.markdown(
+                          response = get_gemini_response(input_text, input_prompt)
+                          st.markdown(
         "<h2 style='text-align: center; font-size: 40px; color: #3498db; font-weight: bold'>Here, You Go!!</h2>",
         unsafe_allow_html=True
     )
-                                      st.write(response)  
-                          except Exception as e:
-                                      st.error(f"Error fetching response: {e}")
+                          st.write(response)  
+                          # except Exception as e:
+                          #             st.error(f"Error fetching response: {e}")
   # input=st.text_input("Ask here!! ",key="input")
   # submit=st.button("Click to get your answer!!")
 
