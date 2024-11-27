@@ -73,12 +73,9 @@ def load_model():
 def get_gemini_response(input, prompt):
     """Fetch response from Gemini AI model."""
     model = load_model()
-    response = model.generate_content([input, prompt])
+    response = model.generate_content([input_text, prompt])
     return response.generations[0].text
-try:
-    response = get_gemini_response(input_text, input_prompt)
-except Exception as e:
-    st.error(f"Error fetching response: {e}")
+
 
 
 
