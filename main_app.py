@@ -41,7 +41,7 @@ import os
 import json
 from cryptography.fernet import Fernet
 st.set_page_config(page_title="ML/AI Cyber App", page_icon="🛡️", layout="wide")
-rf_model = joblib.load('phishing_rf_model.pkl')
+rf_model = joblib.load('phishing_model.pkl')
 with open('2655649.jpg','rb') as f:
             data= f.read()
             imgs= base64.b64encode(data).decode()
@@ -572,7 +572,7 @@ if selected == "Detection Zone":
 
 
     elif st.session_state.current_page == "phishing":
-        rf_model = joblib.load('phishing_model.pkl')
+        
         st.markdown("""
         <style>
             
