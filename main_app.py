@@ -208,25 +208,25 @@ if selected == "Home":
   st.markdown(html_content, unsafe_allow_html=True)
   @st.cache_data
 
-def get_cached_response(input_prompt, user_input):
-    return get_gemini_repsonse(input_prompt, user_input)
+  def get_cached_response(input_prompt, user_input):
+              return get_gemini_repsonse(input_prompt, user_input)
 
-input = st.text_input("Ask here!! ", key="input")
-submit = st.button("Click to get your answer!!")
+  input = st.text_input("Ask here!! ", key="input")
+  submit = st.button("Click to get your answer!!")
 
-input_prompt = """
+  input_prompt = """
 You are an expert in cyber security with all knowledge about cyber attacks and their prevention.
 Answer all user questions related to cyber threats, attacks, prevention, and symptoms only.
 """
 
-if submit and input:
-    with st.spinner("Thinking..."):
-        response = get_cached_response(input_prompt, input)
-    st.markdown(
+   if submit and input:
+               with st.spinner("Thinking..."):
+                           response = get_cached_response(input_prompt, input)
+                           st.markdown(
         "<h2 style='text-align: center; font-size: 40px; color: #3498db; font-weight: bold'>Here, You Go!!</h2>",
         unsafe_allow_html=True
     )
-    st.write(response)
+                           st.write(response)
       
   # input=st.text_input("Ask here!! ",key="input")
   # submit=st.button("Click to get your answer!!")
