@@ -165,14 +165,14 @@ if selected == "Home":
                 """
             
             
-              st.markdown(css_animation + html_content, unsafe_allow_html=True)
+            st.markdown(css_animation + html_content, unsafe_allow_html=True)
               # with col2:
               #   pass
                 # link='https://lottie.host/4117a8db-97dc-44da-ba1e-5cae0b3ccca6/To98bEgVdf.json'
                 # st_lottie(link,key="user",width=350)
                 
               
-              html_content = """
+            html_content = """
                 <style>
                 .subheadline {
                     font-size: 18px;
@@ -205,7 +205,7 @@ if selected == "Home":
                 </h3>
                 """
             
-              st.markdown(html_content, unsafe_allow_html=True)
+            st.markdown(html_content, unsafe_allow_html=True)
               # genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
               # genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
               # def get_gemini_response(input_text,prompt):
@@ -230,17 +230,17 @@ if selected == "Home":
             #               st.write(response)  
                                       # except Exception as e:
                                       #             st.error(f"Error fetching response: {e}")
-              input=st.text_input("Ask here!! ",key="input")
-              submit=st.button("Click to get your answer!!")
+            input=st.text_input("Ask here!! ",key="input")
+            submit=st.button("Click to get your answer!!")
             
-              input_prompt="""
+            input_prompt="""
                 You are an expert in cyber security you have  all knowledge about all cyber attacks and there prevention.
                             now you answer all the questions, input by the user related to cyber threads, attacks,prevention , symptoms only.
                 """
-              if submit:
-                    response=get_gemini_repsonse(input_prompt, input)
-                    st.markdown("<h2  style='text-align: center; font-size: 40px; color: #3498db; font-weight: bold'>Here, You Go!!</h2>", unsafe_allow_html=True)
-                    st.write(response)
+            if submit:
+                        response=get_gemini_repsonse(input_prompt, input)
+                        st.markdown("<h2  style='text-align: center; font-size: 40px; color: #3498db; font-weight: bold'>Here, You Go!!</h2>", unsafe_allow_html=True)
+                        st.write(response)
             
 
 
