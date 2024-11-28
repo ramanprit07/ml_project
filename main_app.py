@@ -105,6 +105,11 @@ with st.sidebar:
 
 # Home page content
 if selected == "Home":
+            genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+            def get_gemini_response(input_text,prompt):
+                        model=genai.GenerativeModel('gemini-1.5-flash')
+                        response=model.generate_content([input_text,prompt])
+                        return response.text
   # col1,col2=st.columns((3,2))
   # with col1:
     # CSS for typewriter effect and color animation
@@ -205,11 +210,11 @@ if selected == "Home":
 
   st.markdown(html_content, unsafe_allow_html=True)
   # genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-  genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-  def get_gemini_response(input_text,prompt):
-              model=genai.GenerativeModel('gemini-1.5-flash')
-              response=model.generate_content([input_text,prompt])
-              return response.text
+  # genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+  # def get_gemini_response(input_text,prompt):
+  #             model=genai.GenerativeModel('gemini-1.5-flash')
+  #             response=model.generate_content([input_text,prompt])
+  #             return response.text
 
   input_text = st.text_input("Ask here!!", key="input")
   submit = st.button("Click to get your answer!!")
