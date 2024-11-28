@@ -144,7 +144,7 @@ if selected == "Home":
                   }
                 </style>
                 """
-              html_content = """
+            html_content = """
                 <div class="typewriter">
                   <h1 style="text-align: center; font-size: 60px; font-weight: 900;text-shadow: 0px 0px 10px #33ccff, 0px 0px 20px #33ccff, 0px 0px 30px #33ccff; color: #ffffff; font-family: 'Courier New', Courier, monospace;">
                     <span style="animation: color-change 3.5s infinite;">
