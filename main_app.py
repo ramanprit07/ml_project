@@ -238,7 +238,7 @@ if selected == "Home":
                             now you answer all the questions, input by the user related to cyber threads, attacks,prevention , symptoms only.
                 """
             if submit:
-                        response=get_gemini_repsonse(input_prompt, input)
+                        response=get_gemini_response(input_prompt, input)
                         st.markdown("<h2  style='text-align: center; font-size: 40px; color: #3498db; font-weight: bold'>Here, You Go!!</h2>", unsafe_allow_html=True)
                         st.write(response)
             
