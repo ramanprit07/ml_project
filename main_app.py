@@ -110,10 +110,7 @@ if selected == "Home":
                         model=genai.GenerativeModel('gemini-1.5-flash')
                         response=model.generate_content([input,prompt])
                         return response.text
-  # col1,col2=st.columns((3,2))
-  # with col1:
-    # CSS for typewriter effect and color animation
-              css_animation = """
+            css_animation = """
                 <style>
                   .typewriter h1 {
                     overflow: hidden;
