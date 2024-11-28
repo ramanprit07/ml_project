@@ -206,9 +206,9 @@ if selected == "Home":
   st.markdown(html_content, unsafe_allow_html=True)
   # genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
   genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-  def get_gemini_repsonse(input,prompt):
+  def get_gemini_response(input_text,prompt):
               model=genai.GenerativeModel('gemini-1.5-flash')
-              response=model.generate_content([input,prompt])
+              response=model.generate_content([input_text,prompt])
               return response.text
 
   input_text = st.text_input("Ask here!!", key="input")
