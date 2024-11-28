@@ -65,30 +65,7 @@ with open('2655649.jpg','rb') as f:
             st.markdown(css, unsafe_allow_html=True)
 
 
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-
-@st.cache_resource
-def load_model():
-    """Load the Gemini AI model only once to avoid repeated loading."""
-    return genai.GenerativeModel('gemini-1.5-flash')
-def get_gemini_response(input, prompt):
-            """Fetch response from Gemini AI model."""
-            model = load_model()
-            response = model.generate_content([input_text, prompt])
-            return response.generations[0].text
-def get_response_with_threading(user_input, prompt):
-    """Run model call in a separate thread to avoid blocking Streamlit."""
-    with concurrent.futures.ThreadPoolExecutor() as executor:
-        future = executor.submit(get_gemini_response, user_input, prompt)
-        try:
-            return future.result(timeout=15)  # Timeout in seconds
-        except concurrent.futures.TimeoutError:
-            return "Sorry, the request timed out. Please try again."
-
-
-
-
-
+# genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 # genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 # def get_gemini_repsonse(input,prompt):
 #     model=genai.GenerativeModel('gemini-1.5-flash')
@@ -227,7 +204,13 @@ if selected == "Home":
     """
 
   st.markdown(html_content, unsafe_allow_html=True)
- 
+  # genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+  genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+  def get_gemini_repsonse(input,prompt):
+              model=genai.GenerativeModel('gemini-1.5-flash')
+              response=model.generate_content([input,prompt])
+              return response.text
+
   input_text = st.text_input("Ask here!!", key="input")
   submit = st.button("Click to get your answer!!")
 
@@ -237,13 +220,12 @@ Answer all user questions related to cyber threats, attacks, prevention, and sym
 """
 
   if submit and input_text:
-              with st.spinner("Thinking..."):
-                          response = get_gemini_response(input_text, input_prompt)
-                          st.markdown(
+              response = get_gemini_response(input_text, input_prompt)
+              st.markdown(
         "<h2 style='text-align: center; font-size: 40px; color: #3498db; font-weight: bold'>Here, You Go!!</h2>",
         unsafe_allow_html=True
     )
-                          st.write(response)  
+              st.write(response)  
                           # except Exception as e:
                           #             st.error(f"Error fetching response: {e}")
   # input=st.text_input("Ask here!! ",key="input")
