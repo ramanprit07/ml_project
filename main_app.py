@@ -106,145 +106,145 @@ with st.sidebar:
 # Home page content
 if selected == "Home":
             genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-            def get_gemini_response(input_text,prompt):
+            def get_gemini_response(input,prompt):
                         model=genai.GenerativeModel('gemini-1.5-flash')
-                        response=model.generate_content([input_text,prompt])
+                        response=model.generate_content([input,prompt])
                         return response.text
   # col1,col2=st.columns((3,2))
   # with col1:
     # CSS for typewriter effect and color animation
-  css_animation = """
-    <style>
-      .typewriter h1 {
-        overflow: hidden;
-        white-space: nowrap;
-        margin: 0 auto;
-        letter-spacing: .15em;
-        animation: 
-          typing 3.5s steps(40, end),
-          blink-caret .65s step-end 15 ,
-          color-change 3.5s infinite;
-      }
-
-      @keyframes typing {
-        from { width: 0 }
-        to { width: 100% }
-      }
-
-      @keyframes blink-caret {
-        from  { opacity: 1 }
-        to {opacity: 0 }
-        50% { opacity: 0 }
-      }
-
-      @keyframes color-change {
-        0% { color: #5F9EA0; }
-        20% { color: #D8BFD8; }
-        40% { color: #48D1CC; }
-        60% { color: #48D1CC; }
-        80% { color: #40E0D0; }
-        100% { color: #40E0D0; }
-      }
-    </style>
-    """
-  html_content = """
-    <div class="typewriter">
-      <h1 style="text-align: center; font-size: 60px; font-weight: 900;text-shadow: 0px 0px 10px #33ccff, 0px 0px 20px #33ccff, 0px 0px 30px #33ccff; color: #ffffff; font-family: 'Courier New', Courier, monospace;">
-        <span style="animation: color-change 3.5s infinite;">
-          AI Cyber
-        </span>
-        <br>
-        <span style="style="background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;animation: color-change 3.5s infinite;">
-          Vanguard App
-        </span>
-        
-        
-        
-        
-        
-        
-      </h1>
-    </div>
-    """
-
-
-  st.markdown(css_animation + html_content, unsafe_allow_html=True)
-  # with col2:
-  #   pass
-    # link='https://lottie.host/4117a8db-97dc-44da-ba1e-5cae0b3ccca6/To98bEgVdf.json'
-    # st_lottie(link,key="user",width=350)
-    
-  
-  html_content = """
-    <style>
-    .subheadline {
-        font-size: 18px;
-        font-weight: bold;
-        text-align: center;
-        color: #33CC33; /* green */
-        text-shadow: 0px 0px 10px #33CC33; /* glow effect */
-        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)); /* dark gradient */
-        padding: 10px;
-        border-radius: 10px;
-        box-shadow: 0px 0px 10px #33CC33; /* glow effect */
-        animation: pulse 2s infinite;
-      }
-
-      @keyframes pulse {
-        0% {
-          transform: scale(1);
-        }
-        50% {
-          transform: scale(1.1);
-        }
-        100% {
-          transform: scale(1);
-        }
-      }
-    </style>
-
-    <h3 class="subheadline">
-      Unlock Cyber Knowledge!!!.. Ask Me Anything!!!
-    </h3>
-    """
-
-  st.markdown(html_content, unsafe_allow_html=True)
-  # genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-  # genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-  # def get_gemini_response(input_text,prompt):
-  #             model=genai.GenerativeModel('gemini-1.5-flash')
-  #             response=model.generate_content([input_text,prompt])
-  #             return response.text
-
-  input_text = st.text_input("Ask here!!", key="input")
-  submit = st.button("Click to get your answer!!")
-
-  input_prompt = """
-You are an expert in cybersecurity with all knowledge about cyber attacks and their prevention.
-Answer all user questions related to cyber threats, attacks, prevention, and symptoms only.
-"""
-
-  if submit and input_text:
-              response = get_gemini_response(input_text, input_prompt)
-              st.markdown(
-        "<h2 style='text-align: center; font-size: 40px; color: #3498db; font-weight: bold'>Here, You Go!!</h2>",
-        unsafe_allow_html=True
-    )
-              st.write(response)  
-                          # except Exception as e:
-                          #             st.error(f"Error fetching response: {e}")
-  # input=st.text_input("Ask here!! ",key="input")
-  # submit=st.button("Click to get your answer!!")
-
-  # input_prompt="""
-  #   You are an expert in cyber security you have  all knowledge about all cyber attacks and there prevention.
-  #               now you answer all the questions, input by the user related to cyber threads, attacks,prevention , symptoms only.
-  #   """
-  # if submit:
-  #       response=get_gemini_repsonse(input_prompt, input)
-  #       st.markdown("<h2  style='text-align: center; font-size: 40px; color: #3498db; font-weight: bold'>Here, You Go!!</h2>", unsafe_allow_html=True)
-  #       st.write(response)
-
+              css_animation = """
+                <style>
+                  .typewriter h1 {
+                    overflow: hidden;
+                    white-space: nowrap;
+                    margin: 0 auto;
+                    letter-spacing: .15em;
+                    animation: 
+                      typing 3.5s steps(40, end),
+                      blink-caret .65s step-end 15 ,
+                      color-change 3.5s infinite;
+                  }
+            
+                  @keyframes typing {
+                    from { width: 0 }
+                    to { width: 100% }
+                  }
+            
+                  @keyframes blink-caret {
+                    from  { opacity: 1 }
+                    to {opacity: 0 }
+                    50% { opacity: 0 }
+                  }
+            
+                  @keyframes color-change {
+                    0% { color: #5F9EA0; }
+                    20% { color: #D8BFD8; }
+                    40% { color: #48D1CC; }
+                    60% { color: #48D1CC; }
+                    80% { color: #40E0D0; }
+                    100% { color: #40E0D0; }
+                  }
+                </style>
+                """
+              html_content = """
+                <div class="typewriter">
+                  <h1 style="text-align: center; font-size: 60px; font-weight: 900;text-shadow: 0px 0px 10px #33ccff, 0px 0px 20px #33ccff, 0px 0px 30px #33ccff; color: #ffffff; font-family: 'Courier New', Courier, monospace;">
+                    <span style="animation: color-change 3.5s infinite;">
+                      AI Cyber
+                    </span>
+                    <br>
+                    <span style="style="background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;animation: color-change 3.5s infinite;">
+                      Vanguard App
+                    </span>
+                    
+                    
+                    
+                    
+                    
+                    
+                  </h1>
+                </div>
+                """
+            
+            
+              st.markdown(css_animation + html_content, unsafe_allow_html=True)
+              # with col2:
+              #   pass
+                # link='https://lottie.host/4117a8db-97dc-44da-ba1e-5cae0b3ccca6/To98bEgVdf.json'
+                # st_lottie(link,key="user",width=350)
+                
+              
+              html_content = """
+                <style>
+                .subheadline {
+                    font-size: 18px;
+                    font-weight: bold;
+                    text-align: center;
+                    color: #33CC33; /* green */
+                    text-shadow: 0px 0px 10px #33CC33; /* glow effect */
+                    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)); /* dark gradient */
+                    padding: 10px;
+                    border-radius: 10px;
+                    box-shadow: 0px 0px 10px #33CC33; /* glow effect */
+                    animation: pulse 2s infinite;
+                  }
+            
+                  @keyframes pulse {
+                    0% {
+                      transform: scale(1);
+                    }
+                    50% {
+                      transform: scale(1.1);
+                    }
+                    100% {
+                      transform: scale(1);
+                    }
+                  }
+                </style>
+            
+                <h3 class="subheadline">
+                  Unlock Cyber Knowledge!!!.. Ask Me Anything!!!
+                </h3>
+                """
+            
+              st.markdown(html_content, unsafe_allow_html=True)
+              # genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+              # genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+              # def get_gemini_response(input_text,prompt):
+              #             model=genai.GenerativeModel('gemini-1.5-flash')
+              #             response=model.generate_content([input_text,prompt])
+              #             return response.text
+            
+            #   input_text = st.text_input("Ask here!!", key="input")
+            #   submit = st.button("Click to get your answer!!")
+            
+            #   input_prompt = """
+            # You are an expert in cybersecurity with all knowledge about cyber attacks and their prevention.
+            # Answer all user questions related to cyber threats, attacks, prevention, and symptoms only.
+            # """
+            
+            #   if submit and input_text:
+            #               response = get_gemini_response(input_text, input_prompt)
+            #               st.markdown(
+            #         "<h2 style='text-align: center; font-size: 40px; color: #3498db; font-weight: bold'>Here, You Go!!</h2>",
+            #         unsafe_allow_html=True
+            #     )
+            #               st.write(response)  
+                                      # except Exception as e:
+                                      #             st.error(f"Error fetching response: {e}")
+              input=st.text_input("Ask here!! ",key="input")
+              submit=st.button("Click to get your answer!!")
+            
+              input_prompt="""
+                You are an expert in cyber security you have  all knowledge about all cyber attacks and there prevention.
+                            now you answer all the questions, input by the user related to cyber threads, attacks,prevention , symptoms only.
+                """
+              if submit:
+                    response=get_gemini_repsonse(input_prompt, input)
+                    st.markdown("<h2  style='text-align: center; font-size: 40px; color: #3498db; font-weight: bold'>Here, You Go!!</h2>", unsafe_allow_html=True)
+                    st.write(response)
+            
 
 
 
